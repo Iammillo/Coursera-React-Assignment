@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Main from './components/Maincomponent'
+import Main from './components/MainComponent'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'bootstrap-social/bootstrap-social.css'

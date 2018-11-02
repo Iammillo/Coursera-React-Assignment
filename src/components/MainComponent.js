@@ -6,12 +6,13 @@ import COMMENTS from "../shared/comments"
 import LEADERS from "../shared/leaders"
 import PROMOTIONS from "../shared/promotions"
 import Dishdetail from './DishdetailComponent'
-import Header from './Headcomponent'
-import Footer from './Footercomponent'
-import Home from './Homecomponent'
+import Header from './HeadComponent'
+import Footer from './FooterComponent'
+import Home from './HomeComponent'
+import About from './AboutComponent'
 
 import {Switch,Route,Redirect} from 'react-router-dom'
-import Contact from './Contactcomponent'
+import Contact from './ContactComponent'
 
 class Main extends Component {
     constructor(props)
@@ -36,12 +37,23 @@ class Main extends Component {
       )
     }
 
+    const DishWithId=({match})=>
+    {
+      return(
+        <Dishdetail dish={this.state.dishes.filter(c=>c.id===parseInt(match.params.dishId,10))[0]}
+        comments ={this.state.comments.filter(c=>c.dishId===parseInt(match.params.dishId,10))}
+        />
+      )
+    }
+
     return (
     <div>
     <Header /> 
     <Switch>
       <Route path='/home' component={HomePage} />
+      <Route path='/aboutus' component={()=><About leaders={this.state.leaders}/>} />
       <Route exact path='/menu' component={()=><Menu dishes={this.state.dishes}/>} />
+      <Route path='/menu/:dishId' component={DishWithId}/>
       <Route exact path='/contactus' component={Contact} />
       <Redirect to="/home" />
     </Switch>
