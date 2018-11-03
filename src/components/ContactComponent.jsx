@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Breadcrumb, BreadcrumbItem,Button,Form,FormGroup,Label,Input,Col,Row,FormFeedback} from 'reactstrap'
+import {Breadcrumb, BreadcrumbItem,Button,Form,FormGroup,Label,Input,Col,FormFeedback} from 'reactstrap'
 import {Link} from 'react-router-dom'
 
 class Contact extends Component {
@@ -63,7 +63,7 @@ class Contact extends Component {
         if (this.state.touched.telnum && !reg.test(telnum))
             errors.telnum='Tel. Number should contain only numbers'
         
-        if(this.state.touched.email && email.split('').filter(x=>x==='@').length!=1)
+        if(this.state.touched.email && email.split('').filter(x=>x==='@').length!==1)
             errors.email='Email should contain a @';
         return errors;
     }
@@ -109,7 +109,7 @@ class Contact extends Component {
                 <div className="col-12 col-sm-11 offset-sm-1">
                     <div className="btn-group" role="group">
                         <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-                        <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
+                        <a role="button" className="btn btn-info" href="/"><i className="fa fa-skype"></i> Skype</a>
                         <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
                     </div>
                 </div>
