@@ -32,6 +32,7 @@ class CommentForm extends Component {
     submitHandle=(values)=>
     {
         this.handleToggle();
+        this.props.addComment(this.props.dishId,values.rating,values.author,values.comment)
         
     }
     render() { 
@@ -115,12 +116,11 @@ class CommentForm extends Component {
 
 
 
-const Dishdetail = (props)=>{
+const Dishdetail = ({dish,comments,addComment})=>{
     
-        const {dish,comments} = props;
         return ( 
             <React.Fragment>  
-            {renderDish(dish,comments)}
+            <RenderDish dish={dish} comments={comments} addComment={addComment}/>
             </React.Fragment>
         );    
 }
@@ -135,7 +135,7 @@ function formatDate(date)
 }
 
 
-const RenderComments =(comments) =>
+const RenderComments =({comments,addComment,dishId}) =>
     {
 
         if (comments!=null)
@@ -154,7 +154,7 @@ const RenderComments =(comments) =>
             return(
                 <ul className="list-unstyled">
                 {com}
-                <CommentForm />
+                <CommentForm dishId={dishId} addComment={addComment}/>
                 </ul>
                 
             )
@@ -164,7 +164,7 @@ const RenderComments =(comments) =>
         }
     }
 
-const renderDish=(dish,comments)=>
+const RenderDish=({dish,comments,addComment})=>
     {
         if (dish!=null)
         {
@@ -192,7 +192,9 @@ const renderDish=(dish,comments)=>
             </div>
             <div className="col-12 col-md-5 m-1" >
             <h4>Comments</h4>
-            {RenderComments(comments)}
+            <RenderComments comments={comments}
+            addComment={addComment}
+            dishId={dish.id}/>
             </div>
             </div>
             </div >
